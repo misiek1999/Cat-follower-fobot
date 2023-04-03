@@ -5,29 +5,34 @@
  */
 
 // include the Pico SDK API header
+#include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/pwm.h"
-// load freertos 
-// #include ""
+#include "FreeRTOS.h"
 
 // include local header files
 #include "pinout.h"
 #include "motor_driver.h"
 
-
-// declare motor driver objects
+// declare motor driver objects for each motor
 Motor::MotorDriver motor1(kMotorPWM_1_A, kMotorPWM_1_B);
 Motor::MotorDriver motor2(kMotorPWM_2_A, kMotorPWM_2_B);
 Motor::MotorDriver motor3(kMotorPWM_3_A, kMotorPWM_3_B);
 Motor::MotorDriver motor4(kMotorPWM_4_A, kMotorPWM_4_B);
 
+// main function
 int main() {
+
+    // init console communication with PC
+    stdio_init_all();
+    // print init message
+    printf("Initialization robot controller");
+
     // setup each motor controller 
     motor1.setControl(500);
     while (true)
     {
     }
-    
 
 }
