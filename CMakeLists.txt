@@ -25,12 +25,16 @@ add_executable(robot ${SOURCES})
 target_include_directories(robot PUBLIC include FreeRTOS_config)
 
 # Pull in our pico_stdlib which pulls in commonly used features
-target_link_libraries(${PROJECT_NAME} pico_stdlib hardware_pwm pico_multicore FreeRTOS-Kernel FreeRTOS-Kernel-Heap1) 
+target_link_libraries(${PROJECT_NAME} FreeRTOS-Kernel FreeRTOS-Kernel-Heap1 pico_stdlib hardware_pwm pico_multicore ) 
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(robot 1)
 pico_enable_stdio_uart(robot 0)
 
+target_compile_definitions(robot PRIVATE
+        mainRUN_FREE_RTOS_ON_CORE=1
+        PICO_STACK_SIZE=0x1000
+)
 
-# pico_add_extra_outputs(robot) 
+pico_add_extra_outputs(robot) 
 

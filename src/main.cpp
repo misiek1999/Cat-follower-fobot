@@ -9,7 +9,12 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/pwm.h"
+
 #include "FreeRTOS.h"
+#include "task.h"     /* RTOS task related API prototypes. */
+#include "queue.h"    /* RTOS queue related API prototypes. */
+#include "timers.h"   /* Software timer related API prototypes. */
+#include "semphr.h"   /* Semaphore related API prototypes. */
 
 // include local header files
 #include "pinout.h"
