@@ -49,6 +49,7 @@ void MotorDriver::setControl(const float pwm_level){
     // set pwm level to each pwm channel 
     pwm_set_chan_level(gpio_a.slice_number, gpio_a.channel, this->pwm_level_);
     pwm_set_chan_level(gpio_b.slice_number, gpio_b.channel, this->pwm_level_);
+    
 }
 
 float MotorDriver::getControl()const{

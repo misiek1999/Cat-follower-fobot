@@ -25,6 +25,9 @@ target_include_directories(robot PUBLIC include)
 # Pull in our pico_stdlib which pulls in commonly used features
 target_link_libraries(${PROJECT_NAME} pico_stdlib hardware_pwm) 
 
+pico_enable_stdio_usb(robot 1)
+pico_enable_stdio_uart(robot 0)
+
 # pico_add_extra_outputs(robot) 
 pico_add_extra_outputs(${PROJECT_NAME})
 
@@ -32,3 +35,5 @@ pico_add_extra_outputs(${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 # include(CPack)
     
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")

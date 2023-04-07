@@ -10,10 +10,10 @@
             "visibility": "hidden"
         },
         "build": {
-            "visibility": "hidden"
+            "visibility": "default"
         },
         "buildTarget": {
-            "visibility": "hidden"
+            "visibility": "default"
         }
     },
     "cmake.buildBeforeRun": true,
@@ -25,5 +25,9 @@
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
         "ctime": "cpp"
-    }
+    },
+    // "cortex-debug.openocdPath": "C:/VSARM/OpenOCB/openocd/openocd.exe",
+    "cortex-debug.openocdPath": "C:/msys64/home/Ja/openocd/src/openocd.exe",
+    "cortex-debug.gdbPath": "arm-none-eabi-gdb",
 }
+    
