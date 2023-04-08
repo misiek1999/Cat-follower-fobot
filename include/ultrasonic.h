@@ -94,27 +94,4 @@ class SR04 : public UltraSonicSensor{
         virtual float get_distance();
     private:
 };
-
-// /*
-//     @details - this class is used to measure distance using multiple ultrasonic sensors connected to the same trigger pin
-// */
-// class MultiSonar {
-//     public:
-//         MultiSonar() = delete;
-//         /*
-//         * @param sensors - vector of ultrasonic sensors
-//           @attention - all sensors must be connected to the same trigger pin
-//         */
-//         MultiSonar(std::vector<UltraSonicSensor> sensors): sensors_(sensors){};
-
-//         // start measurement
-//         void start_measurements();
-
-//         // get distance from all sensors
-//         float get_distance(size_t sensor_number) const;
-//     private:
-//     std::vector<UltraSonicSensor> sensors_;
- 
-// };
-
 }   // end namespace Ultrasonic

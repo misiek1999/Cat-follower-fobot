@@ -35,20 +35,6 @@ void Ultrasonic::UltraSonicSensor::set_temperature(const float temperature)
     UltraSonicSensor::temperature_ = temperature;
 }
 
-// void Ultrasonic::MultiSonar::start_measurements()
-// {
-//     // start measurement for each sensor using parent method
-//     for (auto &sensor : this->sensors_)
-//     {
-//         sensor.start_measurement();
-//     }
-// }
-
-// float Ultrasonic::MultiSonar::get_distance(size_t sensor_number) const
-// {
-//     return sensors_[sensor_number].get_distance();
-// }
-
 Ultrasonic::MeasureEchoPWM::MeasureEchoPWM(const Pin_type echo_pin)
 {
     // covnvert pin number to pwm slice and channel 

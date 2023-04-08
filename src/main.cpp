@@ -25,6 +25,7 @@ Motor::MotorDriver motor4(kMotorPWM_4_A, kMotorPWM_4_B);
 
 // declare ultrasonic sensor objects
 Ultrasonic::SR04 ultrasonic1(kUltrasonicTriggeSR04_1, kUltrasonicEchoSR04_1);
+Ultrasonic::SR04 ultrasonic2(kUltrasonicTriggeSR04_2, kUltrasonicEchoSR04_2);
 
 int main() {
     // setup stdio
@@ -41,9 +42,6 @@ int main() {
     {   
         // test ultrasonic sensor 1
         ultrasonic1.start_measurement();
-        // while(gpio_get(kUltrasonicEchoSR04_1) == 0){};
-        // while(gpio_get(kUltrasonicEchoSR04_1) == 1){};
-        
         sleep_ms(200);
         // test ultrasonic sensor 1
         printf("Distance: %f\n", ultrasonic1.get_distance());
