@@ -20,7 +20,7 @@ MotorDriver::MotorDriver(GPIO_type pwm_a, GPIO_type pwm_b, frequency_type freque
     gpio_a.channel = pwm_gpio_to_channel(gpio_a.gpio);
     gpio_b.channel = pwm_gpio_to_channel(gpio_b.gpio);
     // default clock diveder 
-    clock_divider_ = 24;
+    clock_divider_ = 25;    //TODO: change this variable to constatnt
     // set pwm clock divider
     pwm_set_clkdiv(gpio_a.slice_number, clock_divider_);
     pwm_set_clkdiv(gpio_b.slice_number, clock_divider_);

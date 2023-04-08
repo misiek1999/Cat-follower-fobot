@@ -24,9 +24,9 @@
     "cmake.generator": "Ninja",
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
-        "ctime": "cpp"
+        "ctime": "cpp",
+        "compare": "cpp"
     },
-    // "cortex-debug.openocdPath": "C:/VSARM/OpenOCB/openocd/openocd.exe",
     "cortex-debug.openocdPath": "C:/msys64/home/Ja/openocd/src/openocd.exe",
     "cortex-debug.gdbPath": "arm-none-eabi-gdb",
 }

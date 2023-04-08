@@ -15,6 +15,8 @@
 #include "motor_driver.h"
 #include "ultrasonic.h"
 
+#include "main_controller.h"
+
 // declare motor driver objects
 Motor::MotorDriver motor1(kMotorPWM_1_A, kMotorPWM_1_B);
 Motor::MotorDriver motor2(kMotorPWM_2_A, kMotorPWM_2_B);
@@ -22,7 +24,7 @@ Motor::MotorDriver motor3(kMotorPWM_3_A, kMotorPWM_3_B);
 Motor::MotorDriver motor4(kMotorPWM_4_A, kMotorPWM_4_B);
 
 // declare ultrasonic sensor objects
-Ultrasonic::SR04 ultrasonic1(11, 12);
+Ultrasonic::SR04 ultrasonic1(kUltrasonicTriggeSR04_1, kUltrasonicEchoSR04_1);
 
 int main() {
     // setup stdio
@@ -33,8 +35,18 @@ int main() {
 
     // setup each motor controller 
     motor1.setControl(500);
+
+
     while (true)
-    {
+    {   
+        // test ultrasonic sensor 1
+        ultrasonic1.start_measurement();
+        // while(gpio_get(kUltrasonicEchoSR04_1) == 0){};
+        // while(gpio_get(kUltrasonicEchoSR04_1) == 1){};
+        
+        sleep_ms(200);
+        // test ultrasonic sensor 1
+        printf("Distance: %f\n", ultrasonic1.get_distance());
     }
     
 

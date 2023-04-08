@@ -11,12 +11,39 @@
 
 #include <cstdint>
 #include <time.h>
-#include <vector>
+#include "pico/stdlib.h"
+#include "hardware/gpio.h"
+#include "pico_type.h"
 
 namespace Ultrasonic {
 
 // using name alias to gpio pin type
 using Pin_type = uint16_t;
+using Ultrasonic_time_us_type = uint32_t;   // type to store time in microseconds
+/*
+    @details - this class is used to measure distance using PWM on echo pin of ultrasonic sensor
+*/
+class MeasureEchoPWM{
+    public:
+        MeasureEchoPWM() = delete;
+        /*
+        * @details - this constructor is used to initialize class
+        * @param echo_pin - echo pin attached to interrupt
+        */
+        MeasureEchoPWM(const Pin_type echo_pin);
+        ~MeasureEchoPWM(){};
+        /*
+            @details - this method is used to start measurement
+        */
+        void start_measurement();
+        /*
+            @details - this method is used to stop measurement and return echo time in microseconds
+            @return - echo time in microseconds [us]
+        */
+       Ultrasonic_time_us_type get_echo_time();
+    private:
+        PicoType::gpio_pwm echo_pwm_;   // struct to store pwm pin
+};
 
 /*
     @details - this is virtual class, used to measure distance using ultrasonic sensor
@@ -25,8 +52,13 @@ class UltraSonicSensor{
     public:
         UltraSonicSensor() = delete;
         UltraSonicSensor(const Pin_type trigger_pin, const  Pin_type echo_pin): 
-            trigger_pin_(trigger_pin), echo_pin_(echo_pin){};
+            trigger_pin_(trigger_pin), echo_pin_(echo_pin), meas_echo_pwm_(echo_pin) {
+                // set trigger pin to output
+                gpio_init(trigger_pin);
+                gpio_set_dir(trigger_pin, GPIO_OUT);
+            };
         virtual ~UltraSonicSensor(){};
+
         // start measurement
         virtual void start_measurement();
 
@@ -35,17 +67,12 @@ class UltraSonicSensor{
 
         // set temperature in celsius
         static void set_temperature(const float temperature);
-
     protected:
         Pin_type trigger_pin_;  // trigger pin to generate initial pulse 
         Pin_type echo_pin_; // echo pin attached to interrupt
-        clock_t start_time_; // time when measurement was started uint64_t
-        clock_t end_time_; // time when measurement was ended uint64_t
-
         static float temperature_;  // temperature in celsius
-
-        // echo pin callback function
-        virtual void echo_callback();
+        // object to measure echo time using pwm
+        MeasureEchoPWM meas_echo_pwm_;
 };
 
 
@@ -90,4 +117,4 @@ class SR04 : public UltraSonicSensor{
  
 // };
 
-}   // namespace Ultrasonic
+}   // end namespace Ultrasonic
