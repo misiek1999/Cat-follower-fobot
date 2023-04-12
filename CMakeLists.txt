@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 
 # Pull in SDK (must be before project)
 include(pico_sdk_import.cmake)
-# include(pico_extras_import_optional.cmake)
+include(pico_extras_import_optional.cmake)
 
 # project name 
 project(robot C CXX ASM)

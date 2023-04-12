@@ -18,14 +18,16 @@
 #include "main_controller.h"
 
 // declare motor driver objects
-Motor::MotorDriver motor1(kMotorPWM_1_A, kMotorPWM_1_B);
-Motor::MotorDriver motor2(kMotorPWM_2_A, kMotorPWM_2_B);
-Motor::MotorDriver motor3(kMotorPWM_3_A, kMotorPWM_3_B);
-Motor::MotorDriver motor4(kMotorPWM_4_A, kMotorPWM_4_B);
+Motor::MotorDriver motor1(GPIO::kMotorPWM_1_A, GPIO::kMotorPWM_1_B);
+Motor::MotorDriver motor2(GPIO::kMotorPWM_2_A, GPIO::kMotorPWM_2_B);
+Motor::MotorDriver motor3(GPIO::kMotorPWM_3_A, GPIO::kMotorPWM_3_B);
+Motor::MotorDriver motor4(GPIO::kMotorPWM_4_A, GPIO::kMotorPWM_4_B);
 
 // declare ultrasonic sensor objects
-Ultrasonic::SR04 ultrasonic1(kUltrasonicTriggeSR04_1, kUltrasonicEchoSR04_1);
-Ultrasonic::SR04 ultrasonic2(kUltrasonicTriggeSR04_2, kUltrasonicEchoSR04_2);
+Ultrasonic::SR04 ultrasonic1(GPIO::kUltrasonicTriggeSR04_1, GPIO::kUltrasonicEchoSR04_1);
+Ultrasonic::SR04 ultrasonic2(GPIO::kUltrasonicTriggeSR04_2, GPIO::kUltrasonicEchoSR04_2);
+
+
 
 int main() {
     // setup stdio
@@ -35,8 +37,10 @@ int main() {
     printf("Initialization!\n");
 
     // setup each motor controller 
-    motor1.setControl(500);
-
+    motor1.setControl(900);
+    motor2.setControl(100);
+    motor3.setControl(900);
+    motor4.setControl(100);
 
     while (true)
     {   
@@ -46,7 +50,7 @@ int main() {
         // test ultrasonic sensor 1
         printf("Distance: %f\n", ultrasonic1.get_distance());
     }
-    
+     
 
     printf("Stop program\n");
     return 0;

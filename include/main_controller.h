@@ -26,11 +26,6 @@ namespace controller{
 constexpr uint32_t kMainControllerCallTime = 10; 
 
 /*
-    @brief flag to check if main function is ended before next call
-*/
-static bool main_function_overrun_flag = false;
-
-/*
     @brief main function of the program called by timer each kMainControllerCallTime
 */
 void main_controller();

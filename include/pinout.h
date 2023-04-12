@@ -6,8 +6,12 @@
     Defines go here 
 */ 
 #include "cstdlib"
-// using alias to define gpio type
-using GPIO_type = uint16_t;
+#include "pico_type.h"
+
+namespace GPIO
+{
+    // using alias to define gpio type
+using GPIO_type = PicoType::GPIO_type;
 
 // motor pwm defines 
 // motor 1 gpio pin group
@@ -37,3 +41,27 @@ inline constexpr GPIO_type kUltrasonicEchoSR04_1 = 11;
 // ultrasonic sensor SR04_2
 inline constexpr GPIO_type kUltrasonicTriggeSR04_2 = 10;
 inline constexpr GPIO_type kUltrasonicEchoSR04_2 = 13;
+
+// servo defines
+inline constexpr GPIO_type kServo_1 = 14;   // servo 1
+inline constexpr GPIO_type kServo_2 = 15;   // servo 2
+
+// limit sensor defines
+inline constexpr GPIO_type kLimitSensorFront = 22;
+inline constexpr GPIO_type kLimitSensor_Back = 26;
+
+// UART defines
+inline constexpr GPIO_type kUART_TX = 0;
+inline constexpr GPIO_type kUART_RX = 1;
+
+// I2C defines
+inline constexpr GPIO_type kI2C_SDA = 20;
+inline constexpr GPIO_type kI2C_SCL = 21; 
+
+// Tensometric sensor defines
+inline constexpr GPIO_type kTensometricSensorData = 27;
+inline constexpr GPIO_type kTensometricSensorClk = 28;
+} // namespace GPIO
+
+
+

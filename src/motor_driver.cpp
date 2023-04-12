@@ -37,19 +37,25 @@ MotorDriver::MotorDriver(GPIO_type pwm_a, GPIO_type pwm_b, frequency_type freque
 
 
 void MotorDriver::setControl(const float pwm_level){
-    // limit pwm level to 0.0 to kMaxPWM_
-    if(pwm_level < 0.0f)
-        this->pwm_level_ = 0.0f;
+// limit pwm level to -kMaxPWM_ to kMaxPWM_
+    if(pwm_level < -kMaxPWM_)
+        this->pwm_level_ = -kMaxPWM_;
     else if(pwm_level >= kMaxPWM_)
         this->pwm_level_ = kMaxPWM_;
     else
-        // set pwm level to pwm_level (0.0 to kMaxPWM_
+        // set pwm level to pwm_level (-kMaxPWM_ to kMaxPWM_)
         this->pwm_level_ = pwm_level;
     
-    // set pwm level to each pwm channel 
-    pwm_set_chan_level(gpio_a.slice_number, gpio_a.channel, this->pwm_level_);
-    pwm_set_chan_level(gpio_b.slice_number, gpio_b.channel, this->pwm_level_);
-    
+    if (this->pwm_level_ >= 0) {
+        // set pwm level to each pwm channel 
+        pwm_set_chan_level(gpio_b.slice_number, gpio_b.channel, 0);
+        pwm_set_chan_level(gpio_a.slice_number, gpio_a.channel, this->pwm_level_);
+    } 
+    else {
+        // set pwm level to each pwm channel 
+        pwm_set_chan_level(gpio_a.slice_number, gpio_a.channel, 0);
+        pwm_set_chan_level(gpio_b.slice_number, gpio_b.channel, this->pwm_level_);
+    } 
 }
 
 float MotorDriver::getControl()const{
