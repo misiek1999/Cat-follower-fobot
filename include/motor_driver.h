@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+
 namespace Motor{
 
 // type alias 
@@ -32,7 +33,9 @@ private:
     gpio_pwm gpio_a;
     gpio_pwm gpio_b;
     float clock_divider_;
+
     float pwm_level_;
     float kMaxPWM_ = 1000;
+    
 };
 }  // end namespace

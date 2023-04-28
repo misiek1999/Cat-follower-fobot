@@ -15,7 +15,12 @@
 #include "motor_driver.h"
 #include "ultrasonic.h"
 
+// include 
+#include "gpio_irq_controller.h"
+// include main controller header file
 #include "main_controller.h"
+// include library for servo motor
+#include "pico_servo.h"
 
 // declare motor driver objects
 Motor::MotorDriver motor1(GPIO::kMotorPWM_1_A, GPIO::kMotorPWM_1_B);
@@ -36,19 +41,26 @@ int main() {
     // send initial message over UART 
     printf("Initialization!\n");
 
-    // setup each motor controller 
-    motor1.setControl(900);
-    motor2.setControl(100);
-    motor3.setControl(900);
-    motor4.setControl(100);
+    // init encoder objects
+    gpio_irq::gpio_irq_init();
+    
+    // // setup each motor controller 
+    // motor1.setControl(900);
+    // motor2.setControl(900);
+    // motor3.setControl(900);
+    // motor4.setControl(900);
 
     while (true)
     {   
-        // test ultrasonic sensor 1
-        ultrasonic1.start_measurement();
+        printf("Encoder 1: %f \n", encoder1.getRotationSpeed());
+        printf("Encoder 2: %f \n", encoder2.getRotationSpeed());
+        // // test ultrasonic sensor 1
+        ultrasonic1.SR04::start_measurement();
+        // call parent method to start measurement 
+        ultrasonic2.UltraSonicSensor::start_measurement();
         sleep_ms(200);
-        // test ultrasonic sensor 1
-        printf("Distance: %f\n", ultrasonic1.get_distance());
+        // // test ultrasonic sensor 1
+        // printf("Distance: %f\n", ultrasonic1.get_distance());
     }
      
 

@@ -61,4 +61,5 @@ void MotorDriver::setControl(const float pwm_level){
 float MotorDriver::getControl()const{
     return this->pwm_level_;
 }
-}
+
+}   // end Namespace Motor 

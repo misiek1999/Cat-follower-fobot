@@ -15,12 +15,15 @@ pico_sdk_init()
 include(CTest)
 enable_testing()
 
+
 #include source directory
 file(GLOB SOURCES "src/*.cpp")
 add_executable(robot ${SOURCES})
 
 # add include directory
 target_include_directories(robot PUBLIC include)
+# include libraries
+add_subdirectory(lib)
 
 # Pull in our pico_stdlib which pulls in commonly used features
 target_link_libraries(${PROJECT_NAME} pico_stdlib hardware_pwm) 
@@ -35,5 +38,5 @@ pico_add_extra_outputs(${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 # include(CPack)
     
-set(CMAKE_CXX_FLAGS_DEBUG "-g")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+# set(CMAKE_CXX_FLAGS_DEBUG "-g")
+# set(CMAKE_CXX_FLAGS_RELEASE "-O3")

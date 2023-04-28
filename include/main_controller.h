@@ -5,6 +5,7 @@
 */
 #pragma once
 
+#pragma once
 // include standard libraries
 #include <cstdio>
 // include the Pico SDK API header
@@ -14,8 +15,8 @@
 // include local header files
 #include "pinout.h"
 #include "motor_driver.h"
-#include "ultrasonic.h"
 #include "encoder_driver.h"
+#include "ultrasonic.h"
 #include "gpio_irq_controller.h"
 
 
